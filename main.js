@@ -1,7 +1,7 @@
 var myApp =
-  "https://script.google.com/macros/s/AKfycbyIDfIkgmeexnSohRJOYR69BZqeJaHzSWHODF2c9Hc7MkIK54jDjOheWo8RcYlnVlC5/exec";
-var tasks = "1IlmiAm9i7yIIltIrujBi_Oks7wGhrK2X0sxXqE8jquk";
-var sName = "4 КОЛЕСА";
+  "https://script.google.com/macros/s/AKfycbwp990YbAfCMqR0QtyRuJelGe6l4sfFcMUZ9QF8iXkkGSOlV3Qy9C9EeRXfAykDM-mQ/exec";
+var tasks = "1tUkWfP-Ci68M-bh4nsEI0VxlOoEvvNv64fhwhwivNCU";
+var sName = "SV AUTO";
 //var eDate = "Активно до: 25.09.2025";
 $("#offcanvasNavbarLabel").html(sName);
 //$("#dateend").html(eDate);
@@ -74,7 +74,7 @@ function tasksTable(data) {
       data.Sf[20].label
     }</th><th class="text-secondary text-truncate" style="min-width: 120px; max-width: 180px;">${
       data.Sf[25].label
-    }</th><th class="text-secondary">${data.Sf[29].label}</th></tr>`;
+    }</th><th class="text-secondary">${data.Sf[24].label}</th></tr>`;
 
     var tr = ``;
     var trr = ``;
@@ -96,7 +96,7 @@ function tasksTable(data) {
       var linkColor =
         uStatus == "в архів" ? `class="link-secondary"` : `class="link-dark"`;
 
-      if (data.Tf[i].c[4].v == uStatus && data.Tf[i].c[24].v == sName) {
+      if (data.Tf[i].c[4].v == uStatus) {
         tr += `<tr ${colorw}>
         <td><a target="_blank" href="${data.Tf[i].c[2].v}" ${linkColor}>${
           data.Tf[i].c[3].v
@@ -113,15 +113,14 @@ function tasksTable(data) {
             <td class="${textColor} text-start text-truncate" style="min-width: 120px; max-width: 180px;">${
           data.Tf[i].c[25].v
         }</td><td class="${textColor} text-end">${
-          data.Tf[i].c[29].f + " " + data.Tf[i].c[30].v
+          data.Tf[i].c[24].v
         }</td></tr>`;
       }
       if (
         (data.Tf[i].c[4].v == "пропозиція" ||
           data.Tf[i].c[4].v == "закупівля" ||
           data.Tf[i].c[4].v == "весь документ") &&
-        uStatus == "в роботі" &&
-        data.Tf[i].c[24].v == sName
+        uStatus == "в роботі"
       ) {
         trr += `<tr ${colorp}>
 						<td><a target="_blank" href="${data.Tf[i].c[2].v}" class="link-secondary">${
@@ -139,7 +138,7 @@ function tasksTable(data) {
             <td class="text-start text-secondary text-truncate" style="min-width: 120px; max-width: 180px;">${
               data.Tf[i].c[25].v
             }</td><td class="text-end text-secondary">${
-          data.Tf[i].c[29].f + " " + data.Tf[i].c[30].v
+          data.Tf[i].c[24].v
         }</td></tr>`;
       }
     }
@@ -213,7 +212,7 @@ function tasksModal(data) {
   }
   numCheck = 1;
   for (i = 0; i < data.Tf.length; i++) {
-    if (data.Tf[i].c[24].v == sName) numCheck++;
+    numCheck++;
   }
   opcNum.length = 0;
   opcMake.length = 0;
@@ -308,7 +307,7 @@ function tasksModal(data) {
     }
     if (swap == 1) {
       for (var n = data.Tf.length - 1; n >= 0; n--) {
-        if (data.Tf[n].c[24].v == sName && data.Tf[n].c[25].v == str) {
+        if (data.Tf[n].c[25].v == str) {
           opcClient.push(`<option>${data.Tf[i].c[25].v}</option>`);
           break;
         }
